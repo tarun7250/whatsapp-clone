@@ -1,0 +1,51 @@
+.left-header {
+    width: 100%;
+    height: 59px !important;
+    padding: 0px 25px 0px 20px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    flex-shrink: 0;
+}
+.left-header-profile-details{
+    display: flex;
+    max-width: 50%;
+    align-items: center;
+}
+.left-header-profile-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.left-header-user-name{
+    font-size: 16px;
+    font-weight: 500;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: white;
+    padding-left: 15px;
+}
+
+.left-header-utils-wrapper{
+    display: flex;
+    align-items: center;
+    color: rgb(174, 186, 193);
+}
+
+.left-header-new-chat-wrapper {
+    padding: 8px;
+}
+
+.left-header-menu-wrapper {
+    padding: 8px;
+}
+
+.left-connections-wrapper{
+    flex-basis: 100%;
+
+    overflow: scroll;
+    /* height: calc(100%-108px); */
+}

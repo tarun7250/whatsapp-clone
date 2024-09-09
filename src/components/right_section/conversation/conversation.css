@@ -1,0 +1,76 @@
+.conversation {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: scroll;
+
+}
+
+.message-row{
+    width: 100%;
+    height: fit-content;
+    padding-left: 53px;
+    padding-right: 19px;
+    display:flex;
+    flex-direction: row-reverse;
+    margin-bottom: 1px;
+}
+
+.message-outer{
+    background: rgb(0, 92, 75);
+    width: fit-content;
+    height: fit-content;
+    padding: 6px 7px 8px 9px;
+    border-radius: 10px;
+    max-width: 60%;
+    color: rgba(255, 255, 255, 0.6);
+}
+.message-upper-outer{
+    padding: 6px 7px 8px 9px;
+    border-radius: 10px;
+    margin-bottom: 1px;
+    display: flex;
+    color: rgba(255, 255, 255, 0.6);
+
+}
+
+.message-text{
+    color: rgb(233, 237, 239);
+}
+
+.delete-button{
+    position: absolute;
+    top: 18px;
+    left: -25px;
+    width: 50px;
+    height: 20px;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 16px;
+    border: none;
+}
+
+.message-time{
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+    /* text-align: right;
+    display: flex;
+    align-items: flex-end; */
+    margin-top: -15px;
+    position: relative;
+    float: right;
+}
+
+.conversation-scroll{
+    height: fit-content;
+}
+
+/* @media (min-width: 969px) {
+    .message-row {
+        padding-left: 66px;
+        padding-right: 66px
+    }
+} */
+
+/* background: rgb(0, 92, 75); */

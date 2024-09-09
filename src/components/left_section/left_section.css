@@ -1,0 +1,16 @@
+.left-pane {
+    flex-grow: 1;
+    height: 100%;
+    max-width: 40%;
+    border-right: solid 1px rgba(134, 150, 160,0.5);;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}

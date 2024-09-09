@@ -1,0 +1,11 @@
+.right-pane {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    background: linear-gradient(rgba(32, 44, 51, 0.5), rgba(32, 44, 51, 0.5)), url(https://static.whatsapp.net/rsrc.php/v3/yl/r/gi_DckOUM5a.png);
+    background-repeat: repeat;
+
+
+}
