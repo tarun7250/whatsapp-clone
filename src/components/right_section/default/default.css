@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    flex-grow: 1;
     color: rgba(233, 237, 239, 0.88);
     background-color: rgb(34, 46, 53);
 }
