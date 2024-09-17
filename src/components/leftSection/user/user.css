@@ -3,7 +3,7 @@
     flex-direction: row;
     overflow-x: hidden;
     border-bottom: solid 1px rgba(209, 215, 219,0.2);;
-
+    position: relative;
 }
 
 .profile-picture{
@@ -63,4 +63,15 @@
     overflow: hidden;
     text-overflow: ellipsis; 
 } 
+
+.delete-user-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /*translateX(-100%);*/
+    background: red;/*rgba(209, 215, 219,0.1);*/
+    padding: 5px;
+
+    z-index: 1000000000000;
+}
 /* border-bottom: solid 1px rgb(209, 215, 219); */

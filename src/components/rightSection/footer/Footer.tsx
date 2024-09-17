@@ -1,9 +1,17 @@
-import { ChangeEventHandler, KeyboardEventHandler } from "react";
-import type { UserIndex } from "../../../types/commonTypes"
+import { ChangeEventHandler, KeyboardEventHandler, useContext, useState } from "react";
 import "./footer.css"
-import { messageList } from "../../../assets/messages";
 import getTimeInHHMMFormat from "../../../utils/getCurrentTime";
-export default function Footer({userId,currentMessage, setCurrentMessage}:{userId:UserIndex,currentMessage:string,setCurrentMessage:(message:string)=>void}) {
+import { ActiveUserIdContext, SetMessagesContext } from "../../../contexts";
+export default function Footer() {
+
+    const activeUserId = useContext(ActiveUserIdContext);
+    const setMessages = useContext(SetMessagesContext);
+    const [currentMessage, setCurrentMessage] = useState("");
+
+    if(activeUserId === null) {
+        throw new Error("active user id as has value null");
+    }
+
     const handleInput:ChangeEventHandler<HTMLInputElement> = (e)=>{
         setCurrentMessage(e.target.value);
     }
@@ -11,9 +19,12 @@ export default function Footer({userId,currentMessage, setCurrentMessage}:{userI
         if(currentMessage.trim().length === 0){
             return;
         }
-        messageList[userId].push({
-            sentMessage:currentMessage,
-            messageTime:getTimeInHHMMFormat(),
+        setMessages((messages)=>{
+            messages[activeUserId].push({
+                sentMessage:currentMessage,
+                messageTime:getTimeInHHMMFormat(),
+            })
+            return [...messages];
         })
         setCurrentMessage("");
     }

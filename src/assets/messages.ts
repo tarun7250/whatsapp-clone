@@ -1,6 +1,7 @@
+import { Message } from "../types/commonTypes";
 import getTimeInHHMMFormat from "../utils/getCurrentTime";
 
-export const messageList = [[
+export const messageList: Array<Array<Message>> = [[
     {
         sentMessage:"kuch ",
         messageTime:getTimeInHHMMFormat()

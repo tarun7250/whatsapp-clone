@@ -1,7 +1,7 @@
 import "./user.css";
 
 
-export default function Description({ userName, lastMessage, time }: { userName: string, lastMessage: string, time: string }) {
+export default function Description({ userName, lastMessageText, time }: { userName: string, lastMessageText: string, time: string }) {
     return (
         <div className="description">
             <div className="top-description">
@@ -13,7 +13,7 @@ export default function Description({ userName, lastMessage, time }: { userName:
                 </span>
             </div>
             <span className="last-message">
-                {lastMessage}
+                {lastMessageText}
             </span>
         </div>
     );

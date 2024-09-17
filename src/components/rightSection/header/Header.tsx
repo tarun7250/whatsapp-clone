@@ -1,14 +1,19 @@
 import "./header.css"
-import type { UserIndex } from "../../../types/commonTypes"
 import ProfilePicture from "./ProfilePicture"
-import { CONNECTIONS } from "../../../constant/connections"
-export default function Header({ userId }: { userId: UserIndex }) {
+import { useContext } from "react"
+import { ActiveUserIdContext, UsersContext } from "../../../contexts"
+export default function Header() {
+    const activeUserId = useContext(ActiveUserIdContext);
+    const users = useContext(UsersContext);
+    if(activeUserId === null) {
+        throw new Error("user Id cannot be null in Header");
+    }
     return (
         <div className="right-header">
             <div className="right-header-profile-details">
-                <ProfilePicture imgUrl={CONNECTIONS[userId].profileImg} />
+                <ProfilePicture imgUrl={users[activeUserId].profileImg} />
                 <div className="right-header-user-name">
-                    {CONNECTIONS[userId].name}
+                    {users[activeUserId].name}
                 </div>
             </div>
             <div className="right-header-utils-wrapper">

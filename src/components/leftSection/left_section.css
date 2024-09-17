@@ -1,0 +1,29 @@
+.left-pane {
+    flex-grow: 1;
+    height: 100%;
+    max-width: 40%;
+    border-right: solid 1px rgba(134, 150, 160,0.5);;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.add-user-button {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-110%);
+    width: 100%;
+    background: rgb(0, 92, 75);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: large;
+    padding: 20px;
+    border-radius: 9999px;
+    border: 0;
+}
