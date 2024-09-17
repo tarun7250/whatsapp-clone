@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import "./user.css";
+import { CompactContext } from "../../../contexts";
 
 
 export default function Description({ userName, lastMessageText, time }: { userName: string, lastMessageText: string, time: string }) {
+    const compactMode = useContext(CompactContext);
+
     return (
         <div className="description">
             <div className="top-description">
@@ -12,9 +16,11 @@ export default function Description({ userName, lastMessageText, time }: { userN
                     {time}
                 </span>
             </div>
-            <span className="last-message">
+            {
+            compactMode?<span className="last-message">
                 {lastMessageText}
-            </span>
+            </span>:null
+        }
         </div>
     );
 }

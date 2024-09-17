@@ -1,16 +1,21 @@
 import { useContext, useState } from "react";
 import "./conversation.css";
-import { MessagesContext, SetActionForConfirmationBox, SetSelectedMessageContext } from "../../../contexts";
+import { CompactContext, MessagesContext, SetMessagesContext } from "../../../contexts";
+import ConfirmationBox from "../../confirmationBox/ConfirmationBox";
+import getCurrentTime from "../../../utils/getCurrentTime";
 
 export default function Message({activeUserId, messageIndex}:{activeUserId:number,  messageIndex:number}) {
     
     const messages = useContext(MessagesContext);
-    const setActionForConfirmationBox = useContext(SetActionForConfirmationBox);
-    const setSelectedMessage = useContext(SetSelectedMessageContext);
+    const setMessages = useContext(SetMessagesContext);
     const currentMessage = messages[activeUserId][messageIndex];
+    const compactMode = useContext(CompactContext);
 
     const [dropDownVisibility, setDropDownVisibility] = useState(false);
     const [optionVisibility, setOptionVisibility] = useState(false);
+    const [isModalVisible,setIsModalVisible] = useState(false);
+    const [editText, setEditText] = useState("");
+    const [isEditMode, setIsEditMode] = useState(false);
     
     const handleMouseEnter = () => {
         setDropDownVisibility(true);
@@ -29,18 +34,49 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
         //     });
         //     return structuredClone( messageList);
         // })
-        setActionForConfirmationBox("DELETE-MESSAGE");
-        setSelectedMessage(messageIndex);
+        // setActionForConfirmationBox("DELETE-MESSAGE");
+        // setSelectedMessage(messageIndex);
         setOptionVisibility(false);
+        setIsEditMode(false);
+        setIsModalVisible(true);
     }
 
     const handleOnEdit = ()=>{
-        setActionForConfirmationBox("EDIT");
-        setSelectedMessage(messageIndex);
-        setOptionVisibility(false);
+        setIsEditMode(true);
+        setIsModalVisible(true);
+    }
+
+    const handleCancelButton = ()=>{
+        setIsModalVisible(false);
+    }
+    const handleConfirmButton = ()=>{
+        setIsModalVisible(false);
+
+        if(isEditMode){
+            setMessages((messages)=>{
+                
+                messages[activeUserId][messageIndex] = {sentMessage:editText, messageTime: getCurrentTime()};
+                return [...messages];
+            });
+        }
+        else {
+            setMessages((messageList)=>{
+                if(activeUserId === null){
+                    throw new Error("delete message called with null active user Id");
+                }
+
+                return messageList.map((userMessages,userIndex)=>{
+                    if(activeUserId === userIndex) {
+                        return userMessages.filter((_item,index)=>{return !(index === messageIndex)})
+                    }
+                    return userMessages;
+                });
+            });
+        }
     }
     
     return (
+        <>
         <div className="message-row">
             <div className="message-outer" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
                 <div className="message-upper-outer">
@@ -56,9 +92,18 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
                     </span>
                 </div>
                 <div className="message-time">
-                    {currentMessage.messageTime}
+                    {compactMode?currentMessage.messageTime:""}
                 </div>
             </div>
         </div>
+        <ConfirmationBox isModalVisible={isModalVisible}>
+            <ConfirmationBox.Header><h1>{"Confirm Delete"}</h1></ConfirmationBox.Header>
+            {isEditMode?<ConfirmationBox.Body editText={editText} setEditText={setEditText}/>:null}
+            <ConfirmationBox.Footer>
+                <button onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>
+                <button onClick={handleConfirmButton} className="confirmation-box-right-button">YES</button>
+            </ConfirmationBox.Footer>
+        </ConfirmationBox>
+        </>
     )
 }

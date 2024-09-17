@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Action, Message, User } from "../types/commonTypes";
+import { Message, User } from "../types/commonTypes";
 
 
 export const UsersContext = createContext<Array<User>>([]);
@@ -18,17 +18,8 @@ export const SetActiveUserIdContext = createContext<Dispatch<SetStateAction<numb
     throw new Error('SetActiveUsersContext must be used within a provider');
 });
 
-export const ActionForConfirmationBox = createContext<Action>("HIDDEN");
-export const SetActionForConfirmationBox = createContext<Dispatch<SetStateAction<Action>>>(()=>{
-    throw new Error('SetActionForConfirmationBox must be used withing a provider');
-});
 
-export const DeleteIdContext = createContext<number|null>(null);
-export const SetDeleteIdContext = createContext<Dispatch<SetStateAction<number | null>>>(()=>{
-    throw new Error("SetDeleteIdContext must be used within a provider");
-})
-
-export const SelectedMessageContext = createContext<number|null>(null);
-export const SetSelectedMessageContext = createContext<Dispatch<SetStateAction<number | null>>>(()=>{
-    throw new Error("SetSelectedMessageContext must be used within a provider");
+export const CompactContext = createContext<boolean> (false);
+export const SetCompactContext =  createContext<Dispatch<SetStateAction<boolean>>>(()=>{
+    throw new Error('SetCompactContext must be used within a provider');
 })

@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
+    color: rgba(233, 237, 239, 0.88);
 }
 
 .confirmation-box-top{
@@ -29,7 +30,7 @@
     color: rgba(233, 237, 239, 0.88);
     border: 0;
     border-radius: 10px;
-    height: 20%;
+    width: 100%;
     padding: 20px;
     flex-grow: 1;
 
@@ -60,4 +61,24 @@
     background:  rgb(0, 92, 75);
     color: rgba(233, 237, 239, 0.88);
 
+}
+
+.confirmationbox-header {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.confirmationbox-body {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.confirmationbox-footer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }

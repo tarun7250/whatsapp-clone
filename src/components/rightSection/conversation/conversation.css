@@ -36,6 +36,9 @@
 
 .message-text{
     color: rgb(233, 237, 239);
+    max-width: 100%;
+    word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Break text that exceeds the box */
 }
 
 .message-options{
@@ -74,6 +77,23 @@
 
 .conversation-scroll{
     height: fit-content;
+}
+
+.confirmation-box-left-button{
+    padding: 20px;
+    border-radius: 10px;
+    border: 0;
+    background:  rgb(0, 92, 75);
+    color: rgba(233, 237, 239, 0.88);
+
+}
+.confirmation-box-right-button{
+    padding: 20px;
+    border-radius: 10px;
+    border: 0;
+    background:  rgb(0, 92, 75);
+    color: rgba(233, 237, 239, 0.88);
+
 }
 
 /* @media (min-width: 969px) {

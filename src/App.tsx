@@ -1,84 +1,54 @@
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import LeftPane from "./components/leftSection/LeftPane";
 // import RightPane from "./components/right_section/RightPane";
-import { Action, type Message, type User } from "./types/commonTypes";
+import { type Message, type User } from "./types/commonTypes";
 // import DefaultPage from "./components/right_section/default/DefaultPage";
 
 import useLocalStorage from "./customHooks/useLocalStorage";
-import useEffectOnce from "./customHooks/useEffectOnce";
-import { UsersContext, SetUsersContext, MessagesContext, SetMessagesContext, ActiveUserIdContext, SetActiveUserIdContext, ActionForConfirmationBox, SetActionForConfirmationBox, DeleteIdContext, SetDeleteIdContext, SelectedMessageContext, SetSelectedMessageContext } from "./contexts";
-import { CONNECTIONS } from "./constant/connections";
-import { messageList } from "./assets/messages";
-import ConfirmationBox from "./components/confirmationBox/ConfirmationBox";
+import { UsersContext, SetUsersContext, MessagesContext, SetMessagesContext, ActiveUserIdContext, SetActiveUserIdContext, CompactContext, SetCompactContext } from "./contexts";
 import DefaultPage from "./components/rightSection/default/DefaultPage";
 import RightPane from "./components/rightSection/RightPane";
 
 
 function App() {
-  const [users, setUsers] = useState<Array<User>>(CONNECTIONS);
-  const [messages, setMessages] = useState<Array<Array<Message>>>(messageList);
+  const { getUsersFromLocalStorage, getMessagesFromLocalStorage, setLocalStorage } = useLocalStorage();
+
+  const [users, setUsers] = useState<Array<User>>(getUsersFromLocalStorage());
+  const [messages, setMessages] = useState<Array<Array<Message>>>(getMessagesFromLocalStorage());
   const [activeUserId, setActiveUserId] = useState<number | null>(null);
-  const [actionForConfirmationBox, setActionForConfirmationBox] = useState<Action>("HIDDEN");
-  const [deleteId, setDeleteId] = useState<number | null>(null);
-  const [selectedMessage, setSelectedMessage] = useState<number|null>(null); 
-  // const ref = useRef({messages});
+  const [compactMode, setCompactMode] = useState<boolean>(false);
 
-  // const [getUsersFromLocalStorage, getMessagesFromLocalStorage, setLocalStorage] = useLocalStorage();
-
-  // useEffectOnce(()=>{
-
-  //   setUsers(getUsersFromLocalStorage());
-  //   setMessages(getMessagesFromLocalStorage());
-
-  //   return ()=>{
-  //     setLocalStorage(users,messages);
-  //   }
-  // },[]);
+  useEffect(() => {
+    return () => {
+      setLocalStorage(users, messages);
+    }
+  }, [users, messages, setLocalStorage]);
 
   return (
     <div className="container">
 
-      <SetActionForConfirmationBox.Provider value={setActionForConfirmationBox}>
-        <SetDeleteIdContext.Provider value={setDeleteId}>
-          <SetUsersContext.Provider value={setUsers}>
-            <SetMessagesContext.Provider value={setMessages}>
-              <SetSelectedMessageContext.Provider value = {setSelectedMessage}>
-                <ActiveUserIdContext.Provider value={activeUserId}>
-                    <SetActiveUserIdContext.Provider value={setActiveUserId}>
-
-              
-              <SelectedMessageContext.Provider value = {selectedMessage}>
-                <ActionForConfirmationBox.Provider value={actionForConfirmationBox}>
-                  <DeleteIdContext.Provider value={deleteId}>
-                    <ConfirmationBox />
-                  </DeleteIdContext.Provider>
-                </ActionForConfirmationBox.Provider>
-              </SelectedMessageContext.Provider>
-
-
+      <SetUsersContext.Provider value={setUsers}>
+        <SetMessagesContext.Provider value={setMessages}>
+          <ActiveUserIdContext.Provider value={activeUserId}>
+            <SetActiveUserIdContext.Provider value={setActiveUserId}>
               <MessagesContext.Provider value={messages}>
 
-
-                  <UsersContext.Provider value={users}>
+                <UsersContext.Provider value={users}>
+                  <CompactContext.Provider value={compactMode}>
+                    <SetCompactContext.Provider value={setCompactMode}>
                       <LeftPane />
+                    </SetCompactContext.Provider>
 
-
-                    {/* <DefaultPage /> */}
-                    {(activeUserId === null)? <DefaultPage/> : <RightPane/> }
-                  </UsersContext.Provider>
-
+                  {(activeUserId === null) ? <DefaultPage /> : <RightPane />}
+                  </CompactContext.Provider>
+                </UsersContext.Provider>
 
               </MessagesContext.Provider>
-
-
-                    </SetActiveUserIdContext.Provider>
-                </ActiveUserIdContext.Provider>
-              </SetSelectedMessageContext.Provider>
-            </SetMessagesContext.Provider>
-          </SetUsersContext.Provider>
-        </SetDeleteIdContext.Provider>
-      </SetActionForConfirmationBox.Provider>
+            </SetActiveUserIdContext.Provider>
+          </ActiveUserIdContext.Provider>
+        </SetMessagesContext.Provider>
+      </SetUsersContext.Provider>
     </div>
   );
 }

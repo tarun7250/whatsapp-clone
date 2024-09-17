@@ -1,7 +1,7 @@
 
 // import type { UserIndex } from "../../types/commonTypes"
-import SearchBar from "../search_section/SearchBar"
-import "./left_section.css"
+import SearchBar from "../searchSection/SearchBar"
+import "./leftSection.css"
 import User from "./user/User"
 // import { CONNECTIONS } from "../../constant/connections"
 import Header from "./header/Header"

@@ -19,7 +19,7 @@ const useLocalStorage = () => {
         localStorage.setItem("messages",JSON.stringify(messages));
     }
 
-    return [getUsersFromLocalStorage, getMessagesFromLocalStorage, setLocalStorage];
+    return {getUsersFromLocalStorage, getMessagesFromLocalStorage, setLocalStorage};
 }
 
 export default useLocalStorage;
