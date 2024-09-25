@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 import "./conversation.css";
-import { CompactContext, MessagesContext, SetMessagesContext } from "../../../contexts";
+import { CompactContext, useMessages, useMessagesDispatch } from "../../../contexts";
 import ConfirmationBox from "../../confirmationBox/ConfirmationBox";
-import getCurrentTime from "../../../utils/getCurrentTime";
 
 export default function Message({activeUserId, messageIndex}:{activeUserId:number,  messageIndex:number}) {
     
-    const messages = useContext(MessagesContext);
-    const setMessages = useContext(SetMessagesContext);
+    const messages = useMessages();
+    const messagesDispatch = useMessagesDispatch();
     const currentMessage = messages[activeUserId][messageIndex];
     const compactMode = useContext(CompactContext);
 
@@ -28,14 +27,6 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
         setOptionVisibility(!optionVisibility);
     }
     const handleOnDelete = () => {
-        // setMessages((messageList)=>{
-        //     messageList[activeUserId] = messageList[activeUserId].filter((_item,index)=>{
-        //         return !(index === messageIndex);
-        //     });
-        //     return structuredClone( messageList);
-        // })
-        // setActionForConfirmationBox("DELETE-MESSAGE");
-        // setSelectedMessage(messageIndex);
         setOptionVisibility(false);
         setIsEditMode(false);
         setIsModalVisible(true);
@@ -53,25 +44,19 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
         setIsModalVisible(false);
 
         if(isEditMode){
-            setMessages((messages)=>{
-                
-                messages[activeUserId][messageIndex] = {sentMessage:editText, messageTime: getCurrentTime()};
-                return [...messages];
-            });
+            messagesDispatch({
+                type:"EDITMESSAGE",
+                newMessage:editText,
+                activeUserId,
+                messageId:messageIndex,
+            })
         }
         else {
-            setMessages((messageList)=>{
-                if(activeUserId === null){
-                    throw new Error("delete message called with null active user Id");
-                }
-
-                return messageList.map((userMessages,userIndex)=>{
-                    if(activeUserId === userIndex) {
-                        return userMessages.filter((_item,index)=>{return !(index === messageIndex)})
-                    }
-                    return userMessages;
-                });
-            });
+            messagesDispatch({
+                type:"DELETEMESSAGE",
+                messageId: messageIndex,
+                activeUserId,
+            })
         }
     }
     

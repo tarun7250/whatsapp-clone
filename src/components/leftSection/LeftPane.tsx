@@ -5,12 +5,22 @@ import "./leftSection.css"
 import User from "./user/User"
 // import { CONNECTIONS } from "../../constant/connections"
 import Header from "./header/Header"
-import { useContext } from "react"
-import { UsersContext } from "../../contexts"
+import { useMessages, useUsers } from "../../contexts"
 import AddUser from "./AddUser"
+import useLocalStorage from "../../customHooks/useLocalStorage"
+import { useEffect } from "react"
 
 export default function LeftPane() {
-    const users = useContext(UsersContext);
+    const users = useUsers();
+    const messages = useMessages();
+    const {setLocalStorage} = useLocalStorage();
+
+    useEffect(() => {
+
+        setLocalStorage(users, messages);
+        return () => {
+        }
+    }, [setLocalStorage, users, messages]);
     return (
         <div className="left-pane">
             <Header />

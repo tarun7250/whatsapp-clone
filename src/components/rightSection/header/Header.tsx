@@ -1,10 +1,10 @@
 import "./header.css"
 import ProfilePicture from "./ProfilePicture"
 import { useContext } from "react"
-import { ActiveUserIdContext, UsersContext } from "../../../contexts"
+import { ActiveUserIdContext, useUsers } from "../../../contexts"
 export default function Header() {
     const activeUserId = useContext(ActiveUserIdContext);
-    const users = useContext(UsersContext);
+    const users = useUsers();
     if(activeUserId === null) {
         throw new Error("user Id cannot be null in Header");
     }

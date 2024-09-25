@@ -1,13 +1,13 @@
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./leftSection.css"
-import { SetMessagesContext, SetUsersContext } from "../../contexts";
+import { useMessagesDispatch, useUsersDispatch } from "../../contexts";
 import ConfirmationBox from "../confirmationBox/ConfirmationBox";
 
 const AddUser = () => {
 
-    const setUsers = useContext(SetUsersContext);
-    const setMessages = useContext(SetMessagesContext);
+    const usersDispatch = useUsersDispatch();
+    const messagesDispatch = useMessagesDispatch();
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [editText, setEditText] = useState("");
@@ -21,18 +21,13 @@ const AddUser = () => {
         setIsModalVisible(false);
     }
     const handleConfirmButton = () => {
-        setUsers((users)=>{
-            return [...users,
-                {
-                    id:"user_id_",
-                    name:editText,
-                    profileImg: "https://fastly.picsum.photos/id/297/200/300.jpg?hmac=SF0Y51mRP7i6CoLBIuliqQwDIUJNyf63_r3xhamVSLE",
-                }
-            ]
-        });
-        setMessages((messages)=>{
-            return [...messages,[]];
-        });
+        usersDispatch({
+            type: "ADDUSER",
+            userName: editText,
+        })
+        messagesDispatch({
+            type: "ADDUSER",
+        })
         setIsModalVisible(false);
     }
 

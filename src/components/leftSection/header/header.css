@@ -46,6 +46,6 @@
 .left-connections-wrapper{
     flex-basis: 100%;
 
-    overflow: scroll;
+    overflow-y: auto;
     /* height: calc(100%-108px); */
 }

@@ -1,12 +1,12 @@
 import { ChangeEventHandler, KeyboardEventHandler, useContext, useState } from "react";
 import "./footer.css"
-import getTimeInHHMMFormat from "../../../utils/getCurrentTime";
-import { ActiveUserIdContext, SetMessagesContext } from "../../../contexts";
+import { ActiveUserIdContext, useMessagesDispatch, useUsersDispatch } from "../../../contexts";
 export default function Footer() {
 
     const activeUserId = useContext(ActiveUserIdContext);
-    const setMessages = useContext(SetMessagesContext);
+    const messagesDispatch = useMessagesDispatch();
     const [currentMessage, setCurrentMessage] = useState("");
+    const usersDispatch = useUsersDispatch();
 
     if(activeUserId === null) {
         throw new Error("active user id as has value null");
@@ -19,12 +19,15 @@ export default function Footer() {
         if(currentMessage.trim().length === 0){
             return;
         }
-        setMessages((messages)=>{
-            messages[activeUserId].push({
-                sentMessage:currentMessage,
-                messageTime:getTimeInHHMMFormat(),
-            })
-            return [...messages];
+        usersDispatch({
+            type:"SETLASTMESSAGE",
+            activeUserId,
+            lastMessage: currentMessage,
+        })
+        messagesDispatch({
+            type:"ADDMESSAGE",
+            activeUserId,
+            lastMessage: currentMessage,
         })
         setCurrentMessage("");
     }
