@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import "./conversation.css";
 import { CompactContext, useMessages, useMessagesDispatch } from "../../../contexts";
 import ConfirmationBox from "../../confirmationBox/ConfirmationBox";
+import DropDown from "../../../assets/DropDown";
 
 export default function Message({activeUserId, messageIndex}:{activeUserId:number,  messageIndex:number}) {
     
@@ -62,21 +62,21 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
     
     return (
         <>
-        <div className="message-row">
-            <div className="message-outer" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
-                <div className="message-upper-outer">
-                    <div className="message-text">
+        <div className="w-100p h-f-c disp-f fd-row-r" style={{paddingLeft:"53px", paddingRight:"19px", marginBottom:"1px"}}>
+            <div className="w-f-c h-f-c mx-w-60p tc-gray bg-green" style={{padding:"6px 7px 8px 9px", borderRadius:"10px"}} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
+                <div className="pos-r disp-f tc-gray" style={{padding:"6px 7px 8px 9px", borderRadius:"10px", marginBottom:"1px"}}>
+                    <div className="mx-w-100p w-w-bw oflow-w-bw tc-white">
                         {currentMessage.sentMessage}
                     </div>
-                    <span onClick={handleOnClickOption} style={{position:"relative", visibility:(dropDownVisibility?"visible":"hidden")}} data-icon="down-context" >
-                        <svg viewBox="0 0 18 18" height="18" width="18" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 18 18"><title>down-context</title><path fill="currentColor" d="M3.3,4.6L9,10.3l5.7-5.7l1.6,1.6L9,13.4L1.7,6.2L3.3,4.6z"></path></svg>
-                        <div className="message-options" style={{padding:(optionVisibility?"20px":"0")}}>
-                            <button onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none"}}  className="message-options-button" >delete</button>
-                            <button onClick={handleOnEdit} style={{display: optionVisibility? "flex":"none"}}  className="message-options-button" >edit</button>
+                    <span onClick={handleOnClickOption} style={{position:"absolute", visibility:(dropDownVisibility?"visible":"hidden"), top:0, left:"100%", transform:"translateX(-100%) translateY(-30%)"}} data-icon="down-context" >
+                        <DropDown/>
+                        <div className="pos-a disp-f fd-col bg-c-gray gap-5 lt-100p" style={{padding:(optionVisibility?"20px":"0"), top:0, transform: "translateX(-100%) translateY(-100%)", borderRadius:"10px"}}>
+                            <button onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none", fontSize: "16px", padding:"10px", borderRadius:"5px", border:"none"}}  className="bg-green tc-gray fg-1" >delete</button>
+                            <button onClick={handleOnEdit} style={{display: optionVisibility? "flex":"none", fontSize: "16px", padding:"10px", borderRadius:"5px", border:"none"}}  className="bg-green tc-gray fg-1" >edit</button>
                         </div>
                     </span>
                 </div>
-                <div className="message-time">
+                <div className="tc-gray pos-r fl-r">
                     {compactMode?currentMessage.messageTime:""}
                 </div>
             </div>

@@ -1,7 +1,7 @@
 
 // import type { UserIndex } from "../../types/commonTypes"
 import SearchBar from "../searchSection/SearchBar"
-import "./leftSection.css"
+
 import User from "./user/User"
 // import { CONNECTIONS } from "../../constant/connections"
 import Header from "./header/Header"
@@ -9,6 +9,7 @@ import { useMessages, useUsers } from "../../contexts"
 import AddUser from "./AddUser"
 import useLocalStorage from "../../customHooks/useLocalStorage"
 import { useEffect } from "react"
+import "./../../App.css"
 
 export default function LeftPane() {
     const users = useUsers();
@@ -22,10 +23,10 @@ export default function LeftPane() {
         }
     }, [setLocalStorage, users, messages]);
     return (
-        <div className="left-pane">
+        <div className="left-pane-border fg-1 h-100p mx-w-40p disp-f fd-col fs-0 pos-r">
             <Header />
             <SearchBar />
-            <div className="left-connections-wrapper">
+            <div className="fb-100p oflow-y-auto">
                 {users.length === 0?"No Conversations Yet":""}
                 {
                     users.map((_item, index) => {

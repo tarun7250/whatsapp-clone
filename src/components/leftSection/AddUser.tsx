@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import "./leftSection.css"
+import "./../../App.css"
 import { useMessagesDispatch, useUsersDispatch } from "../../contexts";
 import ConfirmationBox from "../confirmationBox/ConfirmationBox";
 
@@ -33,7 +33,7 @@ const AddUser = () => {
 
     return (
         <>
-            <button onClick={handleClick} className="add-user-button">
+            <button onClick={handleClick} className="add-user-button pos-a bg-green tc-gray w-100p pad-20 curved-box bt-bd-0 f-sz-lg">
                 Start new chat
             </button>
 

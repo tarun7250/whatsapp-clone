@@ -1,16 +1,13 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import "./App.css";
 import LeftPane from "./components/leftSection/LeftPane";
-// import RightPane from "./components/right_section/RightPane";
-// import { type Message, type User } from "./types/commonTypes";
-// import DefaultPage from "./components/right_section/default/DefaultPage";
 
 import { SetActiveUserIdContext, CompactContext, SetCompactContext, ActiveUserIdContext } from "./contexts";
 import DefaultPage from "./components/rightSection/default/DefaultPage";
-import RightPane from "./components/rightSection/RightPane";
 import UsersProvider from "./contexts/UsersContext";
 import MessagesProvider from "./contexts/MessagesContext";
 
+const  RightPane = lazy(()=>import( "./components/rightSection/RightPane"));
 
 
 function App() {
@@ -35,7 +32,7 @@ function App() {
                   <LeftPane />
                 </SetCompactContext.Provider>
 
-                {(activeUserId === null) ? <DefaultPage /> : <RightPane />}
+                {(activeUserId === null) ? <DefaultPage /> : <Suspense fallback={<DefaultPage/>}><RightPane /></Suspense>}
 
 
               </CompactContext.Provider>

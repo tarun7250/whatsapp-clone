@@ -1,4 +1,3 @@
-import "./conversation.css";
 import Message from "./Message";
 import { useContext } from "react";
 import { ActiveUserIdContext, useMessages } from "../../../contexts";
@@ -10,8 +9,8 @@ export default function Conversation() {
         throw new Error("user Id cannot be null in Conversation");
     }
     return (
-        <div className="conversation">
-            <div className="conversation-scroll">
+        <div className="fg-1 disp-f fd-col-r oflow-s">
+            <div className="h-f-c">
                 {
                     messages[activeUserId].map((_item,index)=>{
                         return <Message key={index} activeUserId={activeUserId} messageIndex = {index} />
