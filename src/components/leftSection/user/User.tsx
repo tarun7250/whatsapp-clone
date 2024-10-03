@@ -17,13 +17,16 @@ export default function User({userId}:{userId:number}){
     const messagesDispatch = useMessagesDispatch();
 
     const [tooltipPosition,setTooltipPosition] = useState({top:0,left:0});
-
+    const [toolTipVisible, setTooltipVisible]  = useState(false);
     const [dropDownVisibility, setDropDownVisibility] = useState(false);
     const [isModalVisible,setIsModalVisible] = useState(false);
     
-    const lastMessage = messages[userId][messages[userId].length -1]??"";
+    const lastMessage = messages[userId][messages[userId].length -1]??{sentMessage:"",messageTime:""};
 
     const handleMouseEnter = (event:React.MouseEvent<HTMLElement>) => {
+        if(lastMessage.sentMessage !== ""){
+            setTooltipVisible(true);
+        }
         setDropDownVisibility(true);
         const rect = event.currentTarget.getBoundingClientRect();
         const tooltipHeight = 100;
@@ -38,6 +41,7 @@ export default function User({userId}:{userId:number}){
         });
     }
     const handleMouseLeave = () => {
+        setTooltipVisible(false);
         setDropDownVisibility(false);
     }
     const handleOnDelete = () => {
@@ -69,7 +73,7 @@ export default function User({userId}:{userId:number}){
             <div  onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} style={{background:(userId === activeUserId?`rgb(42, 57, 66)`:`rgb(17, 27, 33)`),borderBottom:"solid 1px rgba(209, 215, 219,0.2)"}} className="pos-r oflow-v disp-f fd-row" onClick={handleClick}>
                 <ProfilePicture imgUrl={users[userId].profileImg} />
                
-                <div className="tc-white ta-center pos-f w-w-bw  w-s-n bg-c-black" style={{padding: "5px", borderRadius:"5px", maxWidth:"50%",    display:(dropDownVisibility?"block":"none"),top:tooltipPosition.top,left:tooltipPosition.left}}>{lastMessage?.sentMessage ?? ""}</div>
+                <div className="tc-white ta-center pos-f w-w-bw  w-s-n bg-c-black" style={{padding: "5px", borderRadius:"5px", maxWidth:"50%",    display:(toolTipVisible?"block":"none"),top:tooltipPosition.top,left:tooltipPosition.left}}>{lastMessage?.sentMessage ?? ""}</div>
                 <Description 
                 userName={users[userId].name}
                 lastMessageText={lastMessage?.sentMessage??""}
