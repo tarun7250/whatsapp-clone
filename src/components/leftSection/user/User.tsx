@@ -73,13 +73,13 @@ export default function User({userId}:{userId:number}){
             <div  onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} style={{background:(userId === activeUserId?`rgb(42, 57, 66)`:`rgb(17, 27, 33)`),borderBottom:"solid 1px rgba(209, 215, 219,0.2)"}} className="pos-r oflow-v disp-f fd-row" onClick={handleClick}>
                 <ProfilePicture imgUrl={users[userId].profileImg} />
                
-                <div className="tc-white ta-center pos-f w-w-bw  w-s-n bg-c-black" style={{padding: "5px", borderRadius:"5px", maxWidth:"50%",    display:(toolTipVisible?"block":"none"),top:tooltipPosition.top,left:tooltipPosition.left}}>{lastMessage?.sentMessage ?? ""}</div>
+                {toolTipVisible?<div className="tc-white ta-center pos-f w-w-bw  w-s-n bg-c-black pad-5 br-5 mx-w-50p disp-b"  style={{ top:tooltipPosition.top,left:tooltipPosition.left}}>{lastMessage?.sentMessage ?? ""}</div>:""}
                 <Description 
                 userName={users[userId].name}
                 lastMessageText={lastMessage?.sentMessage??""}
                 time={lastMessage?.messageTime??""}/>
 
-                    <span onClick={handleOnDelete} style={{position:"relative", visibility:(dropDownVisibility?"visible":"hidden"),color:'rgb(134, 150, 160)'}} data-icon="down-context" >
+                    <span role="button" aria-label="delete-user" onClick={handleOnDelete} className="pos-r" style={{visibility:(dropDownVisibility?"visible":"hidden"),color:'rgb(134, 150, 160)'}} data-icon="down-context" >
                         <DeleteUser/>
                     </span>
             </div> 

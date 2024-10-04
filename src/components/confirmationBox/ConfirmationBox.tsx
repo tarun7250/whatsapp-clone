@@ -4,8 +4,8 @@ import { ChangeEventHandler, Dispatch, ReactNode, SetStateAction } from "react";
 const ConfirmationBox = ({children,isModalVisible}:{children:ReactNode,isModalVisible:boolean}) => {
 
     return (
-        <div className="pos-f z-10000 w-100vw h-100vh" style={{ display: (isModalVisible ? "flex" : "none"), top:"0%" }}>
-            <div className="pos-f disp-f fd-col j-c-sb tc-modal h-30p w-50p z-1000000 bg-c-modal br-20 pad-10" style={{ display: (isModalVisible ? "flex" : "none") , top:"50%", left:"50%", transform:"translateX(-50%) translateY(-50%)"}}>
+        <div className="pos-f z-10000 w-100vw h-100vh top-0p" style={{ display: (isModalVisible ? "flex" : "none") }}>
+            <div className="pos-f disp-f fd-col j-c-sb tc-modal h-30p w-50p z-1000000 bg-c-modal br-20 pad-10 top-50p left-50p translateXY-50-50" style={{ display: (isModalVisible ? "flex" : "none") }}>
                 {children}
             </div>
         </div>
@@ -27,7 +27,7 @@ const Body = ({ editText, setEditText}:{editText:string,setEditText:Dispatch<Set
     }
     return (
         <div className="fg-1 w-100p">
-            <input onChange={handleInput} className="bg-c-gray tc-modal w-100p fg-1 br-10 b-0" contentEditable="true" placeholder="Type a message" value={editText}></input>
+            <input aria-role role="modal-input" onChange={handleInput} className="bg-c-gray tc-modal w-100p fg-1 br-10 b-0" contentEditable="true" placeholder="Type a message" value={editText}></input>
         </div>
     )
 }

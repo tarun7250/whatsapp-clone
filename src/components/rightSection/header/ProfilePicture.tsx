@@ -2,6 +2,6 @@ import "./../../../App.css"
 
 export default function ProfilePicture({imgUrl}:{imgUrl: string}){
     return (
-            <img style={{width:"40px", height:"40px", borderRadius:"50%"}} className="fs-0" src={imgUrl} alt="DP"/>
+            <img className="w-40 h-40 br-50p fs-0" src={imgUrl} alt="DP"/>
     );
 }

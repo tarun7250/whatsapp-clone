@@ -1,11 +1,12 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, Fragment } from "react";
 import "./App.css";
 import LeftPane from "./components/leftSection/LeftPane";
 
-import { SetActiveUserIdContext, CompactContext, SetCompactContext, ActiveUserIdContext } from "./contexts";
 import DefaultPage from "./components/rightSection/default/DefaultPage";
 import UsersProvider from "./contexts/UsersContext";
 import MessagesProvider from "./contexts/MessagesContext";
+import CompactContextProvider from "./contexts/CompactContext";
+import ActiveUserContextProvider from "./contexts/ActiveUserContext";
 
 const  RightPane = lazy(()=>import( "./components/rightSection/RightPane"));
 
@@ -13,7 +14,6 @@ const  RightPane = lazy(()=>import( "./components/rightSection/RightPane"));
 function App() {
 
   const [activeUserId, setActiveUserId] = useState<number | null>(null);
-  const [compactMode, setCompactMode] = useState<boolean>(true);
 
 
   return (
@@ -21,26 +21,21 @@ function App() {
 
 
 
-      <ActiveUserIdContext.Provider value={activeUserId}>
+      <ActiveUserContextProvider value={{activeUserId,setActiveUserId}}>
         <UsersProvider>
           <MessagesProvider>
-            <SetActiveUserIdContext.Provider value={setActiveUserId}>
-              <CompactContext.Provider value={compactMode}>
+              <CompactContextProvider>             
 
+                <Fragment>
+                    <LeftPane />
 
-                <SetCompactContext.Provider value={setCompactMode}>
-                  <LeftPane />
-                </SetCompactContext.Provider>
+                    {(activeUserId === null) ? <DefaultPage /> : <Suspense fallback={<DefaultPage/>}><RightPane /></Suspense>}
+                </Fragment>
 
-                {(activeUserId === null) ? <DefaultPage /> : <Suspense fallback={<DefaultPage/>}><RightPane /></Suspense>}
-
-
-              </CompactContext.Provider>
-            </SetActiveUserIdContext.Provider>
+              </CompactContextProvider> 
           </MessagesProvider>
-
         </UsersProvider>
-      </ActiveUserIdContext.Provider>
+      </ActiveUserContextProvider>
 
     </div>
   );

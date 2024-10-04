@@ -62,17 +62,17 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
     
     return (
         <>
-        <div className="w-100p h-f-c disp-f fd-row-r" style={{paddingLeft:"53px", paddingRight:"19px", marginBottom:"1px"}}>
-            <div className="w-f-c h-f-c mx-w-60p tc-gray bg-green" style={{padding:"6px 7px 8px 9px", borderRadius:"10px"}} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
-                <div className="pos-r disp-f tc-gray" style={{padding:"6px 7px 8px 9px", borderRadius:"10px", marginBottom:"1px"}}>
+        <div className="w-100p h-f-c disp-f fd-row-r pad-l-53 pad-r-19 margin-bottom-1" >
+            <div className="w-f-c h-f-c mx-w-60p tc-gray bg-green br-10 pad-t-6 pad-b-7 pad-l-8 pad-r-9"  onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
+                <div className="pos-r disp-f tc-gray br-10 pad-t-6 pad-b-7 pad-l-8 pad-r-9 margin-bottom-1" >
                     <div className="mx-w-100p w-w-bw oflow-w-bw tc-white">
                         {currentMessage.sentMessage}
                     </div>
-                    <span onClick={handleOnClickOption} style={{position:"absolute", visibility:(dropDownVisibility?"visible":"hidden"), top:0, left:"100%", transform:"translateX(-100%) translateY(-30%)"}} data-icon="down-context" >
+                    <span onClick={handleOnClickOption} className="pos-a top-0p lt-100p translateXY-100-30" style={{visibility:(dropDownVisibility?"visible":"hidden")}} data-icon="down-context" >
                         <DropDown/>
-                        <div className="pos-a disp-f fd-col bg-c-gray gap-5 lt-100p" style={{padding:(optionVisibility?"20px":"0"), top:0, transform: "translateX(-100%) translateY(-100%)", borderRadius:"10px"}}>
-                            <button onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none", fontSize: "16px", padding:"10px", borderRadius:"5px", border:"none"}}  className="bg-green tc-gray fg-1" >delete</button>
-                            <button onClick={handleOnEdit} style={{display: optionVisibility? "flex":"none", fontSize: "16px", padding:"10px", borderRadius:"5px", border:"none"}}  className="bg-green tc-gray fg-1" >edit</button>
+                        <div className="pos-a disp-f fd-col bg-c-gray gap-5 lt-100p br-10 translateXY-100-100 top-0p" style={{padding:(optionVisibility?"20px":"0")}}>
+                            <button onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >delete</button>
+                            <button onClick={handleOnEdit} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >edit</button>
                         </div>
                     </span>
                 </div>
