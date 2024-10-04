@@ -6,9 +6,8 @@ import usersReducer from '../usersReducer';
 // vi.mock('../utils/getCurrentTime'); // Mocking the time function
 
 
-// Correctly mock the time function
 vi.mock('../../utils/getCurrentTime', () => ({
-    default: vi.fn(), // mock the default export of the module
+    default: vi.fn(), 
   }));
 describe('messagesReducer', () => {
     let initialMessages: Array<Array<Message>>;
@@ -19,7 +18,7 @@ describe('messagesReducer', () => {
             [{ messageTime: '11:00', sentMessage: 'Hi there' }],
         ];
 
-        (getTimeInHHMMFormat as jest.Mock).mockReturnValue('12:00'); // Mock current time
+        (getTimeInHHMMFormat as jest.Mock).mockReturnValue('12:00'); 
     });
 
     test('should add a message for ADDMESSAGE action', () => {
@@ -70,8 +69,8 @@ describe('messagesReducer', () => {
 
         const updatedMessages = messagesReducer(initialMessages, action);
 
-        expect(updatedMessages).toHaveLength(3); // New user should be added
-        expect(updatedMessages[2]).toEqual([]); // New user's message list should be empty
+        expect(updatedMessages).toHaveLength(3); 
+        expect(updatedMessages[2]).toEqual([]); 
     });
 
     test('should remove a user for REMOVEUSER action', () => {
@@ -82,8 +81,8 @@ describe('messagesReducer', () => {
 
         const updatedMessages = messagesReducer(initialMessages, action);
 
-        expect(updatedMessages).toHaveLength(1); // User should be removed
-        expect(updatedMessages[0][0].sentMessage).toBe('Hi there'); // Remaining user's message
+        expect(updatedMessages).toHaveLength(1); 
+        expect(updatedMessages[0][0].sentMessage).toBe('Hi there'); 
     });
 
     test('should replace messages for LOCALMESSAGES action', () => {
@@ -98,7 +97,7 @@ describe('messagesReducer', () => {
 
         const updatedMessages = messagesReducer(initialMessages, action);
 
-        expect(updatedMessages).toBe(newMessages); // Messages should be replaced with local ones
+        expect(updatedMessages).toBe(newMessages); 
     });
 
 });
@@ -128,7 +127,7 @@ describe('usersReducer', () => {
         const updatedUsers = usersReducer(initialUsers, action);
 
         expect(updatedUsers[1].lastMessage).toBe('Goodbye!');
-        expect(updatedUsers[0].lastMessage).toBe('Hello!'); // Ensure other users are unaffected
+        expect(updatedUsers[0].lastMessage).toBe('Hello!'); 
     });
 
     test('should add a new user for ADDUSER action', () => {
@@ -141,7 +140,7 @@ describe('usersReducer', () => {
 
         expect(updatedUsers).toHaveLength(3);
         expect(updatedUsers[2]).toEqual({
-            id: "user_id_", // Check if id format is as expected
+            id: "user_id_", 
             name: 'Charlie',
             profileImg: "https://fastly.picsum.photos/id/297/200/300.jpg?hmac=SF0Y51mRP7i6CoLBIuliqQwDIUJNyf63_r3xhamVSLE",
             lastMessage: "",
@@ -157,7 +156,7 @@ describe('usersReducer', () => {
         const updatedUsers = usersReducer(initialUsers, action);
 
         expect(updatedUsers).toHaveLength(1);
-        expect(updatedUsers[0].name).toBe('Bob'); // Ensure 'Alice' is removed
+        expect(updatedUsers[0].name).toBe('Bob'); 
     });
 
     test('should replace users for LOCALUSERS action', () => {
@@ -171,7 +170,7 @@ describe('usersReducer', () => {
         const updatedUsers = usersReducer(initialUsers, action);
 
         expect(updatedUsers).toHaveLength(1);
-        expect(updatedUsers[0].name).toBe('David'); // Ensure users are replaced
+        expect(updatedUsers[0].name).toBe('David');
     });
 
 });
