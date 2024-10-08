@@ -6,14 +6,14 @@ import App from "../../../App";
 describe("left pane test", ()=> {
     test("add user", async ()=> {
         render(<App/>);
-        const addUserButton = screen.getByRole("button",{
+        const ADD_USERButton = screen.getByRole("button",{
             name:"Start new chat",
         });
-        expect(addUserButton).toBeInTheDocument();
+        expect(ADD_USERButton).toBeInTheDocument();
 
 
         //adding user
-        userEvent.click(addUserButton);
+        userEvent.click(ADD_USERButton);
         
         const modalInput = await screen.findByRole("modal-input");
         expect(modalInput).toBeInTheDocument();
@@ -38,14 +38,14 @@ describe("left pane test", ()=> {
 
     test("delete user", async ()=> {
         render(<App/>);
-        const addUserButton = screen.getByRole("button",{
+        const ADD_USERButton = screen.getByRole("button",{
             name:"Start new chat",
         });
-        expect(addUserButton).toBeInTheDocument();
+        expect(ADD_USERButton).toBeInTheDocument();
 
 
         //adding user
-        userEvent.click(addUserButton);
+        userEvent.click(ADD_USERButton);
         
         const modalInput = await screen.findByRole("modal-input");
         expect(modalInput).toBeInTheDocument();

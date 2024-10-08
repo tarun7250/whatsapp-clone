@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { CompactContext, useMessages, useMessagesDispatch } from "../../../contexts";
 import ConfirmationBox from "../../confirmationBox/ConfirmationBox";
 import DropDown from "../../../assets/DropDown";
+import { DELETE_MESSAGE, EDIT_MESSAGE } from "../../../constant/actions";
 
 export default function Message({activeUserId, messageIndex}:{activeUserId:number,  messageIndex:number}) {
     
@@ -45,7 +46,7 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
 
         if(isEditMode){
             messagesDispatch({
-                type:"EDITMESSAGE",
+                type: EDIT_MESSAGE,
                 newMessage:editText,
                 activeUserId,
                 messageId:messageIndex,
@@ -53,7 +54,7 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
         }
         else {
             messagesDispatch({
-                type:"DELETEMESSAGE",
+                type: DELETE_MESSAGE,
                 messageId: messageIndex,
                 activeUserId,
             })
@@ -65,7 +66,7 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
         <div className="w-100p h-f-c disp-f fd-row-r pad-l-53 pad-r-19 margin-bottom-1" >
             <div className="w-f-c h-f-c mx-w-60p tc-gray bg-green br-10 pad-t-6 pad-b-7 pad-l-8 pad-r-9"  onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
                 <div className="pos-r disp-f tc-gray br-10 pad-t-6 pad-b-7 pad-l-8 pad-r-9 margin-bottom-1" >
-                    <div className="mx-w-100p w-w-bw oflow-w-bw tc-white">
+                    <div className="mx-w-100p w-w-bw oflow-w-bw tc-white f-sz-16">
                         {currentMessage.sentMessage}
                     </div>
                     <span onClick={handleOnClickOption} className="pos-a top-0p lt-100p translateXY-100-30" style={{visibility:(dropDownVisibility?"visible":"hidden")}} data-icon="down-context" >
@@ -82,7 +83,7 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
             </div>
         </div>
         <ConfirmationBox isModalVisible={isModalVisible}>
-            <ConfirmationBox.Header><h1>{"Confirm Delete"}</h1></ConfirmationBox.Header>
+            <ConfirmationBox.Header><h1>{isEditMode?"Edit Message":"Confirm Delete"}</h1></ConfirmationBox.Header>
             {isEditMode?<ConfirmationBox.Body editText={editText} setEditText={setEditText}/>:null}
             <ConfirmationBox.Footer>
                 <button onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>

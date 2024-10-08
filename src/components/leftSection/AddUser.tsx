@@ -4,7 +4,7 @@ import "./../../App.css"
 import { useMessagesDispatch, useUsersDispatch } from "../../contexts";
 import ConfirmationBox from "../confirmationBox/ConfirmationBox";
 
-const AddUser = () => {
+const ADD_USER = () => {
 
     const usersDispatch = useUsersDispatch();
     const messagesDispatch = useMessagesDispatch();
@@ -22,11 +22,11 @@ const AddUser = () => {
     }
     const handleConfirmButton = () => {
         usersDispatch({
-            type: "ADDUSER",
+            type: "ADD_USER",
             userName: editText,
         })
         messagesDispatch({
-            type: "ADDUSER",
+            type: "ADD_USER",
         })
         setIsModalVisible(false);
     }
@@ -49,4 +49,4 @@ const AddUser = () => {
     );
 };
 
-export default AddUser;
+export default ADD_USER;

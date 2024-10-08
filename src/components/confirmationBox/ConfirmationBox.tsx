@@ -26,8 +26,8 @@ const Body = ({ editText, setEditText}:{editText:string,setEditText:Dispatch<Set
         setEditText(e.target.value);
     }
     return (
-        <div className="fg-1 w-100p">
-            <input aria-role role="modal-input" onChange={handleInput} className="bg-c-gray tc-modal w-100p fg-1 br-10 b-0" contentEditable="true" placeholder="Type a message" value={editText}></input>
+        <div className="fg-2 w-100p">
+            <input aria-role role="modal-input" onChange={handleInput} className="bg-c-gray tc-modal w-100p fg-1 br-9999 b-0 h-100p" contentEditable="true" placeholder="Type a message" value={editText}></input>
         </div>
     )
 }

@@ -21,9 +21,9 @@ describe('messagesReducer', () => {
         (getTimeInHHMMFormat as jest.Mock).mockReturnValue('12:00'); 
     });
 
-    test('should add a message for ADDMESSAGE action', () => {
+    test('should add a message for ADD_MESSAGE action', () => {
         const action: AnyMessagesACtion = {
-            type: 'ADDMESSAGE',
+            type: 'ADD_MESSAGE',
             activeUserId: 0,
             lastMessage: 'New message',
         };
@@ -37,9 +37,9 @@ describe('messagesReducer', () => {
         });
     });
 
-    test('should delete a message for DELETEMESSAGE action', () => {
+    test('should delete a message for DELETE_MESSAGE action', () => {
         const action: AnyMessagesACtion = {
-            type: 'DELETEMESSAGE',
+            type: 'DELETE_MESSAGE',
             activeUserId: 1,
             messageId: 0,
         };
@@ -49,9 +49,9 @@ describe('messagesReducer', () => {
         expect(updatedMessages[1]).toHaveLength(0); // Message should be deleted
     });
 
-    test('should edit a message for EDITMESSAGE action', () => {
+    test('should edit a message for EDIT_MESSAGE action', () => {
         const action: AnyMessagesACtion = {
-            type: 'EDITMESSAGE',
+            type: 'EDIT_MESSAGE',
             activeUserId: 0,
             messageId: 0,
             newMessage: 'Updated message',
@@ -62,9 +62,9 @@ describe('messagesReducer', () => {
         expect(updatedMessages[0][0].sentMessage).toBe('Updated message');
     });
 
-    test('should add a new user for ADDUSER action', () => {
+    test('should add a new user for ADD_USER action', () => {
         const action: AnyMessagesACtion = {
-            type: 'ADDUSER',
+            type: 'ADD_USER',
         };
 
         const updatedMessages = messagesReducer(initialMessages, action);
@@ -73,9 +73,9 @@ describe('messagesReducer', () => {
         expect(updatedMessages[2]).toEqual([]); 
     });
 
-    test('should remove a user for REMOVEUSER action', () => {
+    test('should remove a user for REMOVE_USER action', () => {
         const action: AnyMessagesACtion = {
-            type: 'REMOVEUSER',
+            type: 'REMOVE_USER',
             userId: 0,
         };
 
@@ -85,13 +85,13 @@ describe('messagesReducer', () => {
         expect(updatedMessages[0][0].sentMessage).toBe('Hi there'); 
     });
 
-    test('should replace messages for LOCALMESSAGES action', () => {
+    test('should replace messages for LOCAL_MESSAGES action', () => {
         const newMessages: Array<Array<Message>> = [
             [{ messageTime: '14:00', sentMessage: 'New local message' }],
         ];
 
         const action: AnyMessagesACtion = {
-            type: 'LOCALMESSAGES',
+            type: 'LOCAL_MESSAGES',
             messages: newMessages,
         };
 
@@ -117,9 +117,9 @@ describe('usersReducer', () => {
         ];
     });
 
-    test('should set the last message for SETLASTMESSAGE action', () => {
+    test('should set the last message for SET_LAST_MESSAGE action', () => {
         const action: AnyUsersAction = {
-            type: 'SETLASTMESSAGE',
+            type: 'SET_LAST_MESSAGE',
             activeUserId: 1,
             lastMessage: 'Goodbye!',
         };
@@ -130,9 +130,9 @@ describe('usersReducer', () => {
         expect(updatedUsers[0].lastMessage).toBe('Hello!'); 
     });
 
-    test('should add a new user for ADDUSER action', () => {
+    test('should add a new user for ADD_USER action', () => {
         const action: AnyUsersAction = {
-            type: 'ADDUSER',
+            type: 'ADD_USER',
             userName: 'Charlie',
         };
 
@@ -147,9 +147,9 @@ describe('usersReducer', () => {
         });
     });
 
-    test('should remove a user for REMOVEUSER action', () => {
+    test('should remove a user for REMOVE_USER action', () => {
         const action: AnyUsersAction = {
-            type: 'REMOVEUSER',
+            type: 'REMOVE_USER',
             userId: 0,
         };
 
@@ -159,9 +159,9 @@ describe('usersReducer', () => {
         expect(updatedUsers[0].name).toBe('Bob'); 
     });
 
-    test('should replace users for LOCALUSERS action', () => {
+    test('should replace users for LOCAL_USERS action', () => {
         const action: AnyUsersAction = {
-            type: 'LOCALUSERS',
+            type: 'LOCAL_USERS',
             users: [
                 { id: 'user_id_3', name: 'David', profileImg: 'https://example.com/david.jpg', lastMessage: '' },
             ],

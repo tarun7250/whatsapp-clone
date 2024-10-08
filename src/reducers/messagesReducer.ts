@@ -1,12 +1,13 @@
 import {Message, AnyMessagesACtion} from "../types/commonTypes";
 import getTimeInHHMMFormat from "../utils/getCurrentTime";
+import { ADD_MESSAGE, ADD_USER, DELETE_MESSAGE, EDIT_MESSAGE, LOCAL_MESSAGES, REMOVE_USER } from "../constant/actions";
 
 
 const messagesReducer = (messages: Array<Array<Message> >, action:AnyMessagesACtion) => {
 
 
     switch (action.type) {
-        case "ADDMESSAGE" : {
+        case ADD_MESSAGE : {
             return messages.map((messageList, index)=> {
                 if(index === action.activeUserId) {
                     //messageList.push();
@@ -20,7 +21,7 @@ const messagesReducer = (messages: Array<Array<Message> >, action:AnyMessagesACt
                 }
             })
         }
-        case "DELETEMESSAGE" : {
+        case DELETE_MESSAGE : {
             return messages.map((messageList, index)=>{
                 if(index === action.activeUserId) {
                     return messageList.filter((_message,index)=>{
@@ -30,7 +31,7 @@ const messagesReducer = (messages: Array<Array<Message> >, action:AnyMessagesACt
                 return messageList;
             });
         }
-        case "EDITMESSAGE" : {
+        case EDIT_MESSAGE : {
             return messages.map((messageList, index)=>{
                 if(index === action.activeUserId) {
                     return messageList.map((message,index)=>{
@@ -43,15 +44,15 @@ const messagesReducer = (messages: Array<Array<Message> >, action:AnyMessagesACt
                 return messageList;
             });
         }
-        case "ADDUSER": {
+        case ADD_USER: {
             return [...messages,[]];
         }
-        case "REMOVEUSER": {
+        case REMOVE_USER: {
             return messages.filter((_messageList, index)=>{
                 return (index != action.userId);
             })
         }
-        case "LOCALMESSAGES": {
+        case LOCAL_MESSAGES: {
             return action.messages;
         }
         

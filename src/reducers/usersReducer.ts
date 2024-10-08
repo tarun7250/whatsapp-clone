@@ -1,3 +1,4 @@
+import { ADD_USER, LOCAL_USERS, REMOVE_USER, SET_LAST_MESSAGE } from "../constant/actions";
 import {User, AnyUsersAction} from "../types/commonTypes";
 
 
@@ -5,7 +6,7 @@ const usersReducer = (users: Array<User>, action:AnyUsersAction) => {
 
 
     switch (action.type) {
-        case "SETLASTMESSAGE": {
+        case SET_LAST_MESSAGE: {
             return users.map((user,index)=> {
                 if(index === action.activeUserId){
                     user.lastMessage = action.lastMessage;
@@ -13,7 +14,7 @@ const usersReducer = (users: Array<User>, action:AnyUsersAction) => {
                 return user;
             })
         }
-        case "ADDUSER": { 
+        case ADD_USER: { 
             return [...users, {
                 id:"user_id_",
                 name:action.userName,
@@ -21,12 +22,12 @@ const usersReducer = (users: Array<User>, action:AnyUsersAction) => {
                 lastMessage: "",
             }];
         }
-        case "REMOVEUSER": { 
+        case REMOVE_USER: { 
             return users.filter((_user, index)=> {
                 return (index != action.userId);
             });
         }
-        case "LOCALUSERS": {
+        case LOCAL_USERS: {
             return action.users;
         }
 

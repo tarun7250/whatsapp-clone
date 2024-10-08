@@ -57,11 +57,11 @@ export default function User({userId}:{userId:number}){
     };
     const handleConfirmButton=()=>{
         usersDispatch({
-            type: "REMOVEUSER",
+            type: "REMOVE_USER",
             userId,
         })
         messagesDispatch({
-            type:"REMOVEUSER",
+            type:"REMOVE_USER",
             userId,
         })
         setActiveUserId(null);
@@ -73,7 +73,7 @@ export default function User({userId}:{userId:number}){
             <div  onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} style={{background:(userId === activeUserId?`rgb(42, 57, 66)`:`rgb(17, 27, 33)`),borderBottom:"solid 1px rgba(209, 215, 219,0.2)"}} className="pos-r oflow-v disp-f fd-row" onClick={handleClick}>
                 <ProfilePicture imgUrl={users[userId].profileImg} />
                
-                {toolTipVisible?<div className="tc-white ta-center pos-f w-w-bw  w-s-n bg-c-black pad-5 br-5 mx-w-50p disp-b"  style={{ top:tooltipPosition.top,left:tooltipPosition.left}}>{lastMessage?.sentMessage ?? ""}</div>:""}
+                {toolTipVisible?<div className="tc-white ta-center pos-f w-w-bw  w-s-n bg-c-black pad-5 br-5 mx-w-50p disp-b f-sz-15"  style={{ top:tooltipPosition.top,left:tooltipPosition.left}}>{lastMessage?.sentMessage ?? ""}</div>:""}
                 <Description 
                 userName={users[userId].name}
                 lastMessageText={lastMessage?.sentMessage??""}

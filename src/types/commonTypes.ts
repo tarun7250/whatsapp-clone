@@ -1,5 +1,4 @@
 export type UserIndex = number;
-
 export type User = {
     id:string,
     name:string,
@@ -15,10 +14,10 @@ export type Message = {
 
 
 type UsersPayloads = {
-    SETLASTMESSAGE: { lastMessage: string, activeUserId: number },
-    ADDUSER: { userName: string },
-    REMOVEUSER: { userId: number },
-    LOCALUSERS: {users: Array<User>},
+    SET_LAST_MESSAGE: { lastMessage: string, activeUserId: number },
+    ADD_USER: { userName: string },
+    REMOVE_USER: { userId: number },
+    LOCAL_USERS: {users: Array<User>},
   };
   
 
@@ -27,30 +26,30 @@ export type UsersAction<T extends keyof UsersPayloads> = {
 type: T;
 } & UsersPayloads[T];
 
-export type AnyUsersAction = UsersAction<"ADDUSER"> | UsersAction<"REMOVEUSER"> | UsersAction<"SETLASTMESSAGE"> | UsersAction<"LOCALUSERS">;
+export type AnyUsersAction = UsersAction<"ADD_USER"> | UsersAction<"REMOVE_USER"> | UsersAction<"SET_LAST_MESSAGE"> | UsersAction<"LOCAL_USERS">;
 
 
 type MessagesPayloads = {
-    ADDMESSAGE: {lastMessage: string, activeUserId: number},
-    DELETEMESSAGE: {messageId: number, activeUserId: number},
-    EDITMESSAGE: {newMessage: string, messageId: number, activeUserId: number},
-    REMOVEUSER: {userId: number}
-    LOCALMESSAGES: {messages: Array<Array<Message>>}
+    ADD_MESSAGE: {lastMessage: string, activeUserId: number},
+    DELETE_MESSAGE: {messageId: number, activeUserId: number},
+    EDIT_MESSAGE: {newMessage: string, messageId: number, activeUserId: number},
+    REMOVE_USER: {userId: number}
+    LOCAL_MESSAGES: {messages: Array<Array<Message>>}
 };
 
 export type MessagesAction<T extends keyof MessagesPayloads> = {
     type: T;
 } & MessagesPayloads[T];
 
-export type AnyMessagesACtion = MessagesAction<"ADDMESSAGE"> | MessagesAction<"DELETEMESSAGE"> | MessagesAction<"EDITMESSAGE"> | MessagesAction<"REMOVEUSER"> | MessagesAction<"LOCALMESSAGES"> | {type: "ADDUSER"};
+export type AnyMessagesACtion = MessagesAction<"ADD_MESSAGE"> | MessagesAction<"DELETE_MESSAGE"> | MessagesAction<"EDIT_MESSAGE"> | MessagesAction<"REMOVE_USER"> | MessagesAction<"LOCAL_MESSAGES"> | {type: "ADD_USER"};
 
 
 
-//export type MessagesActionTypes = "ADDMESSAGE" | "DELETEMESSAGE" | "EDITMESSAGE";
+//export type MessagesActionTypes = "ADD_MESSAGE" | "DELETE_MESSAGE" | "EDIT_MESSAGE";
 
-export type AddUser = "ADD-USER";
+export type ADD_USER = "ADD-USER";
 export type DeleteUser = "DELETE-USER";
-export type DeleteMessage = "DELETE-MESSAGE";
+export type DELETE_MESSAGE = "DELETE-MESSAGE";
 export type Hidden = "HIDDEN";
-export type EditMessage = "EDIT";
-export type Action = AddUser|DeleteUser|DeleteMessage|EditMessage|Hidden;
+export type EDIT_MESSAGE = "EDIT";
+export type Action = ADD_USER|DeleteUser|DELETE_MESSAGE|EDIT_MESSAGE|Hidden;

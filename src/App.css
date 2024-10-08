@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+html{
+  font-size: 1px;
+}
+
+h1{
+  font-size: 50rem;
+}
 * {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
@@ -40,16 +47,16 @@
   width: 100%;
 }
 .w-40{
-  width: 40px;
+  width: 40rem;
 }
 .w-49{
-  width: 49px;
+  width: 49rem;
 }
 .w-72{
-  width: 72px;
+  width: 72rem;
 }
 .w-77{
-  width: 77px;
+  width: 77rem;
 }
 
 .w-f-c {
@@ -63,28 +70,28 @@
   height: 30%;
 }
 .h-49{
-  height: 49px;
+  height: 49rem;
 }
 .h-100p{
   height: 100%; 
 }
 .h-35{
-  height: 35px;
+  height: 35rem;
 }
 .h-40{
-  height: 40px;
+  height: 40rem;
 }
 .h-48{
-  height: 48px;
+  height: 48rem;
 }
 .h-60{
-  height: 60px;
+  height: 60rem;
 }
 .h-66{
-  height: 66px;
+  height: 66rem;
 }
 .h-72{
-  height: 72px;
+  height: 72rem;
 }
 .h-f-c{
   height: fit-content;
@@ -235,7 +242,7 @@
 
 
 .curved-box{
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .bt-bd-0 {
@@ -245,16 +252,16 @@
 
 /*fontsize*/
 .f-sz-16{
-  font-size: 16px;
+  font-size: 16rem;
 }
 .f-sz-12{
-  font-size: 12px;
+  font-size: 12rem;
 }
 .f-sz-14{
-  font-size: 14px
+  font-size: 14rem
 }
 .f-sz-15{
-  font-size: 15px
+  font-size: 15rem
 }
 .f-sz-lg {
   font-size: large;
@@ -294,70 +301,70 @@
 
 /*border radius*/
 .br-5{
-  border-radius: 5px;
+  border-radius: 5rem;
 }
 .br-10{
-  border-radius: 10px;
+  border-radius: 10rem;
 }
 .br-20{
-  border-radius: 20px;
+  border-radius: 20rem;
 }
 .br-50{
-  border-radius: 50px;
+  border-radius: 50rem;
 }
 .br-50p{
   border-radius: 50%;
 }
 .br-9999{
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 /*padding*/
 .pad-8{
-  padding: 8px;
+  padding: 8rem;
 }
 .pad-5{
-  padding: 5px;
+  padding: 5rem;
 }
 .pad-10{
-  padding: 10px;
+  padding: 10rem;
 }
 .pad-20{
-  padding: 20px;
+  padding: 20rem;
 }
-.pad-t-0 { padding-top: 0px; }
-.pad-r-25 { padding-right: 25px; }
-.pad-r-15 { padding-right: 15px; }
-.pad-r-12 { padding-right: 12px; }
-.pad-r-5 {padding-right: 5px; }
-.pad-b-0 { padding-bottom: 0px; }
-.pad-l-20 { padding-left: 20px; }
-.pad-l-15 { padding-left: 15px; }
-.pad-l-13 { padding-left: 13px; }
-.pad-l-12 { padding-left: 12px; }
-.pad-l-9 { padding-left: 9px; }
-.pad-r-12 { padding-right: 12px; }
-.pad-t-9 {padding-top: 9px;}
-.pad-b-12 {padding-bottom: 12px;}
+.pad-t-0 { padding-top: 0rem; }
+.pad-r-25 { padding-right: 25rem; }
+.pad-r-15 { padding-right: 15rem; }
+.pad-r-12 { padding-right: 12rem; }
+.pad-r-5 {padding-right: 5rem; }
+.pad-b-0 { padding-bottom: 0rem; }
+.pad-l-20 { padding-left: 20rem; }
+.pad-l-15 { padding-left: 15rem; }
+.pad-l-13 { padding-left: 13rem; }
+.pad-l-12 { padding-left: 12rem; }
+.pad-l-9 { padding-left: 9rem; }
+.pad-r-12 { padding-right: 12rem; }
+.pad-t-9 {padding-top: 9rem;}
+.pad-b-12 {padding-bottom: 12rem;}
 
-.pad-t-10 { padding-top: 10px; }
-.pad-b-10 { padding-bottom: 10px; }
-.pad-l-16 { padding-left: 16px; }
-.pad-r-16 { padding-right: 16px; }
+.pad-t-10 { padding-top: 10rem; }
+.pad-b-10 { padding-bottom: 10rem; }
+.pad-l-16 { padding-left: 16rem; }
+.pad-r-16 { padding-right: 16rem; }
 
-.pad-t-5 {padding-top: 5px;}
-.pad-b-16{padding-bottom: 16px;}
-.pad-l-5{padding-left: 5px;}
-.pad-l-53 {padding-left: 53px;}
-.pad-r-19 {padding-right: 19px;}
+.pad-t-5 {padding-top: 5rem;}
+.pad-b-16{padding-bottom: 16rem;}
+.pad-l-5{padding-left: 5rem;}
+.pad-l-53 {padding-left: 53rem;}
+.pad-r-19 {padding-right: 19rem;}
 
-.pad-t-6{padding-top: 6px;}
-.pad-b-7{padding-bottom:7px;}
-.pad-l-8{padding-left:8px;}
-.pad-r-9{padding-right:9px;}
+.pad-t-6{padding-top: 6rem;}
+.pad-b-7{padding-bottom:7rem;}
+.pad-l-8{padding-left:8rem;}
+.pad-r-9{padding-right:9rem;}
 
 .margin-bottom-1{
-  margin-bottom: 1px;
+  margin-bottom: 1rem;
 }
 
 
@@ -367,16 +374,16 @@
 }
 
 .gap-5 {
-  gap: 5px;
+  gap: 5rem;
 }
 .gap-20 {
-  gap: 20px;
+  gap: 20rem;
 }
 
 .fl-r {
   float: right;
-  font-size: 11px;
-    margin-top: -10px;
+  font-size: 11rem;
+    margin-top: -10rem;
 }
 
 
@@ -419,16 +426,16 @@
 }
 
 .outline-0-solid-trans{
-  outline: 0px solid transparent;
+  outline: 0rem solid transparent;
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1700rem) {
     .container {
-        width: 1700px;
+        width: 1700rem;
     }
 }
 
-@media (max-width: 1699px) {
+@media (max-width: 1699rem) {
     .container {
         width: 100%;
     }
@@ -437,7 +444,7 @@
 
 /*non atomic*/
 .left-pane-border {
-    border-right: solid 1px rgba(134, 150, 160,0.5);;
+    border-right: solid 1rem rgba(134, 150, 160,0.5);;
 }
 
 .add-user-button {
@@ -447,16 +454,16 @@
 
 /*pad-20 */
 .confirmation-box-left-button{
-  padding: 20px;
-  border-radius: 10px;
+  padding: 20rem;
+  border-radius: 10rem;
   border: 0;
   background:  rgb(0, 92, 75);
   color: rgba(233, 237, 239, 0.88);
 
 }
 .confirmation-box-right-button{
-  padding: 20px;
-  border-radius: 10px;
+  padding: 20rem;
+  border-radius: 10rem;
   border: 0;
   background:  rgb(0, 92, 75);
   color: rgba(233, 237, 239, 0.88);
@@ -464,19 +471,19 @@
 }
 
 .default-heading {
-  margin-top: 38px;
-  font-size: 32px;
+  margin-top: 38rem;
+  font-size: 32rem;
 }
 .default-body {
-  margin-top: 24px;
-  font-size: 14px;
+  margin-top: 24rem;
+  font-size: 14rem;
 }
 
 .default-button {
-  margin-top: 24px;
+  margin-top: 24rem;
   background-color: rgb(0, 168, 132);
   color: rgb(17, 27, 33);
   border: 0;
-  border-radius: 9999px;
-  padding: 10px 24px 10px 24px;
+  border-radius: 9999rem;
+  padding: 10rem 24rem 10rem 24rem;
 }

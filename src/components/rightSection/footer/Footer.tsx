@@ -5,6 +5,7 @@ import { ActiveUserIdContext, useMessagesDispatch, useUsersDispatch } from "../.
 import Emojis from "../../../assets/Emojis";
 import PlusButton from "../../../assets/PlusButton";
 import SendButton from "../../../assets/SendButton";
+import { ADD_MESSAGE, SET_LAST_MESSAGE } from "../../../constant/actions";
 export default function Footer() {
 
     const activeUserId = useContext(ActiveUserIdContext);
@@ -24,12 +25,12 @@ export default function Footer() {
             return;
         }
         usersDispatch({
-            type:"SETLASTMESSAGE",
+            type: SET_LAST_MESSAGE,
             activeUserId,
             lastMessage: currentMessage,
         })
         messagesDispatch({
-            type:"ADDMESSAGE",
+            type: ADD_MESSAGE,
             activeUserId,
             lastMessage: currentMessage,
         })
