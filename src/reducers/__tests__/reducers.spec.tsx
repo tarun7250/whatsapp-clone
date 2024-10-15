@@ -6,16 +6,14 @@ import usersReducer from '../usersReducer';
 // vi.mock('../utils/getCurrentTime'); // Mocking the time function
 
 
-vi.mock('../../utils/getCurrentTime', () => ({
-    default: vi.fn(), 
-  }));
+vi.mock('../../utils/getCurrentTime', () => ({default: vi.fn()}));
 describe('messagesReducer', () => {
     let initialMessages: Array<Array<Message>>;
 
     beforeEach(() => {
         initialMessages = [
-            [{ messageTime: '10:00', sentMessage: 'Hello' }],
-            [{ messageTime: '11:00', sentMessage: 'Hi there' }],
+            [{ messageTime: '10:00', sentMessage: 'message ' }],
+            [{ messageTime: '11:00', sentMessage: 'new message' }],
         ];
 
         (getTimeInHHMMFormat as jest.Mock).mockReturnValue('12:00'); 
@@ -82,7 +80,7 @@ describe('messagesReducer', () => {
         const updatedMessages = messagesReducer(initialMessages, action);
 
         expect(updatedMessages).toHaveLength(1); 
-        expect(updatedMessages[0][0].sentMessage).toBe('Hi there'); 
+        expect(updatedMessages[0][0].sentMessage).toBe('new message'); 
     });
 
     test('should replace messages for LOCAL_MESSAGES action', () => {
@@ -112,8 +110,8 @@ describe('usersReducer', () => {
 
     beforeEach(() => {
         initialUsers = [
-            { id: 'user_id_1', name: 'Alice', profileImg: 'https://example.com/alice.jpg', lastMessage: 'Hello!' },
-            { id: 'user_id_2', name: 'Bob', profileImg: 'https://example.com/bob.jpg', lastMessage: 'Hi there!' },
+            { id: 'user_id_1', name: 'name1', profileImg: 'https://example.com/name1.jpg', lastMessage: 'message' },
+            { id: 'user_id_2', name: 'name2', profileImg: 'https://example.com/name2.jpg', lastMessage: 'another message' },
         ];
     });
 
@@ -121,19 +119,19 @@ describe('usersReducer', () => {
         const action: AnyUsersAction = {
             type: 'SET_LAST_MESSAGE',
             activeUserId: 1,
-            lastMessage: 'Goodbye!',
+            lastMessage: 'last message',
         };
 
         const updatedUsers = usersReducer(initialUsers, action);
 
-        expect(updatedUsers[1].lastMessage).toBe('Goodbye!');
-        expect(updatedUsers[0].lastMessage).toBe('Hello!'); 
+        expect(updatedUsers[1].lastMessage).toBe('last message');
+        expect(updatedUsers[0].lastMessage).toBe('message'); 
     });
 
     test('should add a new user for ADD_USER action', () => {
         const action: AnyUsersAction = {
             type: 'ADD_USER',
-            userName: 'Charlie',
+            userName: 'name3',
         };
 
         const updatedUsers = usersReducer(initialUsers, action);
@@ -141,7 +139,7 @@ describe('usersReducer', () => {
         expect(updatedUsers).toHaveLength(3);
         expect(updatedUsers[2]).toEqual({
             id: "user_id_", 
-            name: 'Charlie',
+            name: 'name3',
             profileImg: "https://fastly.picsum.photos/id/297/200/300.jpg?hmac=SF0Y51mRP7i6CoLBIuliqQwDIUJNyf63_r3xhamVSLE",
             lastMessage: "",
         });
@@ -156,21 +154,21 @@ describe('usersReducer', () => {
         const updatedUsers = usersReducer(initialUsers, action);
 
         expect(updatedUsers).toHaveLength(1);
-        expect(updatedUsers[0].name).toBe('Bob'); 
+        expect(updatedUsers[0].name).toBe('name2'); 
     });
 
     test('should replace users for LOCAL_USERS action', () => {
         const action: AnyUsersAction = {
             type: 'LOCAL_USERS',
             users: [
-                { id: 'user_id_3', name: 'David', profileImg: 'https://example.com/david.jpg', lastMessage: '' },
+                { id: 'user_id_3', name: 'name4', profileImg: 'https://example.com/name4.jpg', lastMessage: '' },
             ],
         };
 
         const updatedUsers = usersReducer(initialUsers, action);
 
         expect(updatedUsers).toHaveLength(1);
-        expect(updatedUsers[0].name).toBe('David');
+        expect(updatedUsers[0].name).toBe('name4');
     });
 
 });

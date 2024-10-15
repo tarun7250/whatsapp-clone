@@ -69,7 +69,7 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
                     <div className="mx-w-100p w-w-bw oflow-w-bw tc-white f-sz-16">
                         {currentMessage.sentMessage}
                     </div>
-                    <span onClick={handleOnClickOption} className="pos-a top-0p lt-100p translateXY-100-30" style={{visibility:(dropDownVisibility?"visible":"hidden")}} data-icon="down-context" >
+                    <span role="message-dropdown" onClick={handleOnClickOption} className="pos-a top-0p lt-100p translateXY-100-30" style={{visibility:(dropDownVisibility?"visible":"hidden")}} data-icon="down-context" >
                         <DropDown/>
                         <div className="pos-a disp-f fd-col bg-c-gray gap-5 lt-100p br-10 translateXY-100-100 top-0p" style={{padding:(optionVisibility?"20px":"0")}}>
                             <button onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >delete</button>

@@ -2,7 +2,7 @@ import { createContext, Dispatch, SetStateAction, useContext } from "react";
 import { AnyMessagesACtion, AnyUsersAction, Message, User } from "../types/commonTypes";
 
 
-export const UsersContext = createContext<Array<User>>([]);
+export const UsersContext = createContext<Array<User>>([]);//check if initial value or not
 export const UsersDipatchContext = createContext<React.Dispatch<AnyUsersAction>>(() => {
     throw new Error('usersdispatchcontext must be used within a provider');
 });

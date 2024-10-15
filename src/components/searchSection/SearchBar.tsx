@@ -7,7 +7,7 @@ export default function SearchBar() {
                 <div className="tc-modal">
                     <SearchButton/>
                 </div>
-                <input className="bg-t b-0 f-sz-15 f-wt-100 w-90p outline-0" contentEditable="true" placeholder="Search of start a new chat"  name="fee"></input>
+                <input className="bg-t b-0 f-sz-15 f-wt-100 w-90p outline-0" contentEditable="true" placeholder="Search of start a new chat"  data-testid="chat-search-input"></input>
             </div>
         </div>
     );
