@@ -69,27 +69,27 @@ export default function Message({activeUserId, messageIndex}:{activeUserId:numbe
                     <div className="mx-w-100p w-w-bw oflow-w-bw tc-white f-sz-16">
                         {currentMessage.sentMessage}
                     </div>
-                    <span role="message-dropdown" onClick={handleOnClickOption} className="pos-a top-0p lt-100p translateXY-100-30" style={{visibility:(dropDownVisibility?"visible":"hidden")}} data-icon="down-context" >
+                    {dropDownVisibility?<span role="message-dropdown" onClick={handleOnClickOption} className="pos-a top-0p lt-100p translateXY-100-30" data-icon="down-context" >
                         <DropDown/>
                         <div className="pos-a disp-f fd-col bg-c-gray gap-5 lt-100p br-10 translateXY-100-100 top-0p" style={{padding:(optionVisibility?"20px":"0")}}>
-                            <button onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >delete</button>
-                            <button onClick={handleOnEdit} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >edit</button>
+                            <button data-testid="delete-message" onClick={handleOnDelete} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >delete</button>
+                            <button data-testid="edit-message" onClick={handleOnEdit} style={{display: optionVisibility? "flex":"none"}}  className="b-none br-5 pad-10 f-sz-16 bg-green tc-gray fg-1" >edit</button>
                         </div>
-                    </span>
+                    </span>:""}
                 </div>
                 <div className="tc-gray pos-r fl-r">
                     {compactMode?currentMessage.messageTime:""}
                 </div>
             </div>
         </div>
-        <ConfirmationBox isModalVisible={isModalVisible}>
+        {isModalVisible?<ConfirmationBox isModalVisible={isModalVisible}>
             <ConfirmationBox.Header><h1>{isEditMode?"Edit Message":"Confirm Delete"}</h1></ConfirmationBox.Header>
             {isEditMode?<ConfirmationBox.Body editText={editText} setEditText={setEditText}/>:null}
             <ConfirmationBox.Footer>
-                <button onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>
-                <button onClick={handleConfirmButton} className="confirmation-box-right-button">YES</button>
+                <button data-testid="cancel-button" onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>
+                <button data-testid="confirm-change" onClick={handleConfirmButton} className="confirmation-box-right-button">YES</button>
             </ConfirmationBox.Footer>
-        </ConfirmationBox>
+        </ConfirmationBox>:""}
         </>
     )
 }

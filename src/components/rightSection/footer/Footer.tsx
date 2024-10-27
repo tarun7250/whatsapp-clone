@@ -53,9 +53,9 @@ export default function Footer() {
 
             <div className="fg-1 w-100p bg-c-gray disp-f a-i-c j-c-sb ">
                 <div className="br-10 h-40 pad-t-9 pad-b-12 pad-l-9 pad-r-12 bg-c-lgray fg-1">
-                    <input onKeyDown={handleKeyPress} onChange={handleInput} className=" bg-c-lgray h-100p b-0 f-sz-15 f-wt-100 w-90p tc-modal outline-0-solid-trans"  contentEditable="true" placeholder="Type a message" value={currentMessage} role="message-input"></input>
+                    <input data-testid="message-input" onKeyDown={handleKeyPress} onChange={handleInput} className=" bg-c-lgray h-100p b-0 f-sz-15 f-wt-100 w-90p tc-modal outline-0-solid-trans"  contentEditable="true" placeholder="Type a message" value={currentMessage} role="message-input"></input>
                 </div>
-                <button aria-label="send-message" onClick={handleClick}  className="b-0 bg-t tc-gray">
+                <button data-testid="send-message" aria-label="send-message" onClick={handleClick}  className="b-0 bg-t tc-gray">
                     <SendButton/>
                 </button>
             </div>

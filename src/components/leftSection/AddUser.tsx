@@ -33,7 +33,7 @@ const ADD_USER = () => {
 
     return (
         <>
-            <button onClick={handleClick} className="add-user-button pos-a bg-green tc-gray w-100p pad-20 curved-box bt-bd-0 f-sz-lg">
+            <button data-testid="new-chat-button" onClick={handleClick} className="add-user-button pos-a bg-green tc-gray w-100p pad-20 curved-box bt-bd-0 f-sz-lg">
                 Start new chat
             </button>
 
@@ -41,8 +41,8 @@ const ADD_USER = () => {
                 <ConfirmationBox.Header><h1>{"Enter Username"}</h1></ConfirmationBox.Header>
                 <ConfirmationBox.Body editText={editText} setEditText={setEditText}/>
                 <ConfirmationBox.Footer>
-                    <button onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>
-                    <button onClick={handleConfirmButton} className="confirmation-box-right-button">SAVE</button>
+                    <button data-testid="cancel-button" onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>
+                    <button data-testid="save-button" onClick={handleConfirmButton} className="confirmation-box-right-button">SAVE</button>
                 </ConfirmationBox.Footer>
             </ConfirmationBox>
         </>

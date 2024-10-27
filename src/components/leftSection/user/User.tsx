@@ -49,8 +49,6 @@ export default function User({userId}:{userId:number}){
     }
     const handleClick = () => {
         setActiveUserId(userId);
-        console.log(userId);
-        console.log(users);
     };
     const handleCancelButton=()=>{
         setIsModalVisible(false);
@@ -79,18 +77,18 @@ export default function User({userId}:{userId:number}){
                 lastMessageText={lastMessage?.sentMessage??""}
                 time={lastMessage?.messageTime??""}/>
 
-                    <span role="button" aria-label="delete-user" onClick={handleOnDelete} className="pos-r" style={{visibility:(dropDownVisibility?"visible":"hidden"),color:'rgb(134, 150, 160)'}} data-icon="down-context" >
+                    {dropDownVisibility?<span data-testid="delete-user-button" onClick={handleOnDelete} className="pos-r" style={{color:'rgb(134, 150, 160)'}} data-icon="down-context" >
                         <DeleteUser/>
-                    </span>
+                    </span>:""}
             </div> 
-            <ConfirmationBox isModalVisible={isModalVisible}>
+            {isModalVisible?<ConfirmationBox isModalVisible={isModalVisible}>
                 <ConfirmationBox.Header><h1>Confirm Delete</h1></ConfirmationBox.Header>
                 {/* <ConfirmationBox.Body>{""}</ConfirmationBox.Body> */}
                 <ConfirmationBox.Footer>
                     <button onClick={handleCancelButton} className="confirmation-box-left-button">CANCEL</button>
-                    <button onClick={handleConfirmButton} className="confirmation-box-right-button">YES</button>
+                    <button data-testid="confirm-delete-user" onClick={handleConfirmButton} className="confirmation-box-right-button">YES</button>
                 </ConfirmationBox.Footer>
-            </ConfirmationBox>
+            </ConfirmationBox>:""}
         </>
     );
 }

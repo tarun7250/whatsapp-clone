@@ -41,7 +41,7 @@ export type MessagesAction<T extends keyof MessagesPayloads> = {
     type: T;
 } & MessagesPayloads[T];
 
-export type AnyMessagesACtion = MessagesAction<"ADD_MESSAGE"> | MessagesAction<"DELETE_MESSAGE"> | MessagesAction<"EDIT_MESSAGE"> | MessagesAction<"REMOVE_USER"> | MessagesAction<"LOCAL_MESSAGES"> | {type: "ADD_USER"};
+export type AnyMessagesAction = MessagesAction<"ADD_MESSAGE"> | MessagesAction<"DELETE_MESSAGE"> | MessagesAction<"EDIT_MESSAGE"> | MessagesAction<"REMOVE_USER"> | MessagesAction<"LOCAL_MESSAGES"> | {type: "ADD_USER"};
 
 
 
